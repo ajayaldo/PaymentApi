@@ -11,7 +11,6 @@ namespace Payment.Api
     {
       var builder = new ContainerBuilder();
       builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-
       var container = builder.Build();
       var dependencyResolver = new AutofacWebApiDependencyResolver(container);
       GlobalConfiguration.Configuration.DependencyResolver = dependencyResolver;

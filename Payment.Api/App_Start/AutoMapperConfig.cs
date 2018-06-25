@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Payment.Api.DTOs;
+using Payment.Common.Models;
 
 namespace Payment.Api.App_Start
 {
@@ -8,7 +10,8 @@ namespace Payment.Api.App_Start
     {
       Mapper.Initialize((config) =>
       {
-
+        config.CreateMap<PaymentDataDto, DepositDetail>();
+        config.CreateMap<PaymentDataDto, BankAccount>();
       });
     }
   }
