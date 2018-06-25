@@ -1,4 +1,5 @@
-﻿using System.Web.Http.Results;
+﻿using System.Net;
+using System.Web.Http.Results;
 using AutoFixture;
 using AutoMapper;
 using FakeItEasy;
@@ -98,12 +99,6 @@ namespace Payment.Api.Tests
 
       capturedBankAccount.Should().BeEquivalentTo(account);
       capturedDepositDetail.Should().BeEquivalentTo(depositDetail);
-    }
-
-    [Test]
-    public void Post_Should_Throw_Validation_Error()
-    {
-      
     }
   }
 }

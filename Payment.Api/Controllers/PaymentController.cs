@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Tracing;
 using AutoMapper;
 using Payment.Api.DTOs;
 using Payment.Api.Filters;
@@ -11,10 +12,12 @@ namespace Payment.Api.Controllers
     : ApiController
   {
     private readonly IPaymentService _paymentService;
+    private readonly ILoggerService _loggerService;
 
-    public PaymentController(IPaymentService paymentService)
+    public PaymentController(IPaymentService paymentService, ILoggerService loggerService)
     {
       _paymentService = paymentService;
+      _loggerService = loggerService;
     }
 
     [HttpPost]
@@ -22,6 +25,8 @@ namespace Payment.Api.Controllers
     [Route("submit")]
     public IHttpActionResult Post([FromBody] PaymentDataDto paymentDataDto)
     {
+      Configuration.Services.GetTraceWriter().Info(Request, "PaymentController", "Payment submit");
+
       var depositDetail = Mapper.Map<PaymentDataDto, DepositDetail>(paymentDataDto);
       var account = Mapper.Map<PaymentDataDto, BankAccount>(paymentDataDto);
 
