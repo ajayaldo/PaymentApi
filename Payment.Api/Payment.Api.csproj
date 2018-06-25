@@ -144,6 +144,14 @@
       <Project>{f697bd51-f941-4ea9-b7f1-378a4e684a88}</Project>
       <Name>Payment.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Payment.Repository\Payment.Repository.csproj">
+      <Project>{1E3E65E1-B590-4594-9A93-D243BCB57D72}</Project>
+      <Name>Payment.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Payment.Service\Payment.Service.csproj">
+      <Project>{D0251641-C2C1-4E6B-B67C-CD889C5EC75A}</Project>
+      <Name>Payment.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

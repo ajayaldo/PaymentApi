@@ -99,5 +99,11 @@ namespace Payment.Api.Tests
       capturedBankAccount.Should().BeEquivalentTo(account);
       capturedDepositDetail.Should().BeEquivalentTo(depositDetail);
     }
+
+    [Test]
+    public void Post_Should_Throw_Validation_Error()
+    {
+      
+    }
   }
 }
