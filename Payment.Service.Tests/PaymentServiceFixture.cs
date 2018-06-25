@@ -12,7 +12,6 @@ namespace Payment.Service.Tests
   {
     private readonly IPaymentRepository _paymentRepository;
     private readonly PaymentService _submitPaymentService;
-    private readonly PaymentDataEntity _paymentDataEntity;
     private readonly BankAccount _account;
     private readonly DepositDetail _depositDetail;
     private readonly Fixture _fixture;
@@ -22,7 +21,6 @@ namespace Payment.Service.Tests
       _fixture = new Fixture();
       _paymentRepository = A.Fake<IPaymentRepository>();
       _submitPaymentService = new PaymentService(_paymentRepository);
-      _paymentDataEntity = _fixture.Create<PaymentDataEntity>();
       _account = _fixture.Create<BankAccount>();
       _depositDetail = _fixture.Create<DepositDetail>();
     }
