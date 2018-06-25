@@ -1,7 +1,9 @@
-﻿namespace Payment.Common.ServiceInerfaces
+﻿using Payment.Common.Models;
+
+namespace Payment.Common.ServiceInerfaces
 {
   public interface ILoggerService
   {
-    void Log();
+    void Log(LogLevel logLevel,string log);
   }
 }

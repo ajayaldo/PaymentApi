@@ -1,5 +1,5 @@
-﻿using System.Web.Http;
-using System.Web.Http.Tracing;
+﻿using System;
+using System.Web.Http;
 using AutoMapper;
 using Payment.Api.DTOs;
 using Payment.Api.Filters;
@@ -25,13 +25,14 @@ namespace Payment.Api.Controllers
     [Route("submit")]
     public IHttpActionResult Post([FromBody] PaymentDataDto paymentDataDto)
     {
-      Configuration.Services.GetTraceWriter().Info(Request, "PaymentController", "Payment submit");
+      _loggerService.Log(LogLevel.Info, "Submit payment start.");
 
       var depositDetail = Mapper.Map<PaymentDataDto, DepositDetail>(paymentDataDto);
       var account = Mapper.Map<PaymentDataDto, BankAccount>(paymentDataDto);
 
       var transactionId = _paymentService.Submit(account, depositDetail);
 
+      _loggerService.Log(LogLevel.Info, "Submit payment successful.");
       return Created(transactionId, paymentDataDto);
     }
   }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Payment.Common.Models;
+using Payment.Common.ServiceInerfaces;
 
 namespace Payment.Service
 {
   public class LoggerService
+    : ILoggerService
   {
+    public void Log(LogLevel logLevel, string log)
+    {
+    }
   }
 }

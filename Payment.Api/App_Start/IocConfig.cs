@@ -2,6 +2,7 @@
 using Autofac.Integration.WebApi;
 using System.Reflection;
 using System.Web.Http;
+using Payment.Common.Models;
 using Payment.Common.RepositoryInterfaces;
 using Payment.Common.ServiceInerfaces;
 using Payment.Repository;
@@ -19,6 +20,7 @@ namespace Payment.Api
       builder.RegisterType<PaymentService>().As<IPaymentService>();
       builder.RegisterType<TextPaymentRepository>().As<IPaymentRepository>();
       builder.RegisterType<FilePathService>().As<IFilePathService>();
+      builder.RegisterType<LoggerService>().As<ILoggerService>();
 
       var container = builder.Build();
       var dependencyResolver = new AutofacWebApiDependencyResolver(container);

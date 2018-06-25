@@ -19,13 +19,15 @@ namespace Payment.Api.Tests
     private PaymentDataDto _paymentDataDto;
     private PaymentController _controller;
     private Fixture _fixture;
+    private ILoggerService _fakeLoggerService;
 
     public PaymentControllerFixture()
     {
       _fixture = new Fixture();
       _fakePaymentService = A.Fake<IPaymentService>();
+      _fakeLoggerService = A.Fake<ILoggerService>();
       _paymentDataDto = _fixture.Create<PaymentDataDto>();
-      _controller = new PaymentController(_fakePaymentService);
+      _controller = new PaymentController(_fakePaymentService, _fakeLoggerService);
 
       var transaction = _fixture.Create<string>();
       A.CallTo(() => _fakePaymentService.Submit(A<BankAccount>.Ignored, A<DepositDetail>.Ignored)).Returns(transaction);
