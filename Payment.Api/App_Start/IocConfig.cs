@@ -20,7 +20,7 @@ namespace Payment.Api
       builder.RegisterType<PaymentService>().As<IPaymentService>();
       builder.RegisterType<TextPaymentRepository>().As<IPaymentRepository>();
       builder.RegisterType<FilePathService>().As<IFilePathService>();
-      builder.RegisterType<LoggerService>().As<ILoggerService>();
+      builder.RegisterType<LoggerService>().As<ILoggerService>().SingleInstance();
 
       var container = builder.Build();
       var dependencyResolver = new AutofacWebApiDependencyResolver(container);

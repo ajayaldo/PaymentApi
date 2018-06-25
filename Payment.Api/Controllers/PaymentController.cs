@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Http;
+﻿using System.Web.Http;
 using AutoMapper;
 using Payment.Api.DTOs;
 using Payment.Api.Filters;
@@ -33,6 +32,7 @@ namespace Payment.Api.Controllers
       var transactionId = _paymentService.Submit(account, depositDetail);
 
       _loggerService.Log(LogLevel.Info, "Submit payment successful.");
+
       return Created(transactionId, paymentDataDto);
     }
   }
