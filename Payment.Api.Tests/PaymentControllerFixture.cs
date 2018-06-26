@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http.Results;
 using AutoFixture;
 using AutoMapper;
@@ -15,11 +17,12 @@ namespace Payment.Api.Tests
 {
   public class PaymentControllerFixture
   {
-    private IPaymentService _fakePaymentService;
-    private PaymentDataDto _paymentDataDto;
-    private PaymentController _controller;
-    private Fixture _fixture;
-    private ILoggerService _fakeLoggerService;
+    private readonly IPaymentService _fakePaymentService;
+    private readonly PaymentDataDto _paymentDataDto;
+    private readonly PaymentController _controller;
+    private readonly Fixture _fixture;
+    private readonly ILoggerService _fakeLoggerService;
+    private readonly string _paymentUri;
 
     public PaymentControllerFixture()
     {
@@ -27,7 +30,14 @@ namespace Payment.Api.Tests
       _fakePaymentService = A.Fake<IPaymentService>();
       _fakeLoggerService = A.Fake<ILoggerService>();
       _paymentDataDto = _fixture.Create<PaymentDataDto>();
-      _controller = new PaymentController(_fakePaymentService, _fakeLoggerService);
+      var _paymentUri = "http://localhost/payment";
+
+      _controller =
+        new PaymentController(_fakePaymentService, _fakeLoggerService)
+        {
+          Request = new HttpRequestMessage { RequestUri = new Uri(_paymentUri) }
+        };
+
 
       var transaction = _fixture.Create<string>();
       A.CallTo(() => _fakePaymentService.Submit(A<BankAccount>.Ignored, A<DepositDetail>.Ignored)).Returns(transaction);
@@ -60,8 +70,7 @@ namespace Payment.Api.Tests
     {
       var httpActionResult = _controller.Post(_paymentDataDto);
       var contentResult = httpActionResult as CreatedNegotiatedContentResult<PaymentDataDto>;
-      _paymentDataDto.IsSameOrEqualTo(contentResult.Content);
-
+      contentResult.Content.IsSameOrEqualTo(_paymentDataDto);
     }
 
     [Test]

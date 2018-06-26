@@ -4,6 +4,6 @@ namespace Payment.Common.RepositoryInterfaces
 {
   public interface IPaymentRepository
   {
-    string SubmitPayment(PaymentDataEntity paymentEntity);
+    void Add(PaymentDataEntity paymentEntity);
   }
 }

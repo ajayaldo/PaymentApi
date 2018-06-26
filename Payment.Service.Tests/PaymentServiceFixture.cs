@@ -1,4 +1,5 @@
-﻿using AutoFixture;
+﻿using System;
+using AutoFixture;
 using FakeItEasy;
 using FluentAssertions;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ using Payment.Common.RepositoryInterfaces;
 
 namespace Payment.Service.Tests
 {
-  class PaymentServiceFixture
+ public class PaymentServiceFixture
   {
     private readonly IPaymentRepository _paymentRepository;
     private readonly PaymentService _submitPaymentService;
@@ -31,21 +32,19 @@ namespace Payment.Service.Tests
     {
       _submitPaymentService.Submit(_account, _depositDetail);
 
-      A.CallTo(() => _paymentRepository.SubmitPayment(A<PaymentDataEntity>.Ignored)).MustHaveHappened();
+      A.CallTo(() => _paymentRepository.Add(A<PaymentDataEntity>.Ignored)).MustHaveHappened();
     }
 
     [Test]
     public void Should_Call_SubmitPayment_Repository_With_PaymentDataEntity()
     {
-      var id = _fixture.Create<string>();
-      A.CallTo(() => _paymentRepository.SubmitPayment(A<PaymentDataEntity>.Ignored)).Returns(id);
-
       PaymentDataEntity capturedObject = null;
-      A.CallTo(() => _paymentRepository.SubmitPayment(A<PaymentDataEntity>.Ignored))
+      A.CallTo(() => _paymentRepository.Add(A<PaymentDataEntity>.Ignored))
         .Invokes((PaymentDataEntity pd) => capturedObject = pd);
 
       var expectedPaymentDataEntity = new PaymentDataEntity
       {
+        Id = new Guid().ToString(),
         AccountName = _account.AccountName,
         AccountNumber = _account.AccountNumber,
         Bsb = _account.Bsb,
@@ -55,18 +54,19 @@ namespace Payment.Service.Tests
 
       _submitPaymentService.Submit(_account, _depositDetail);
 
-      capturedObject.ShouldBeEquivalentTo(expectedPaymentDataEntity);
+      capturedObject.AccountName.Should().Be(expectedPaymentDataEntity.AccountName);
+      capturedObject.AccountNumber.Should().Be(expectedPaymentDataEntity.AccountNumber);
+      capturedObject.Bsb.Should().Be(expectedPaymentDataEntity.Bsb);
+      capturedObject.Amount.Should().Be(expectedPaymentDataEntity.Amount);
+      capturedObject.Reference.Should().Be(expectedPaymentDataEntity.Reference);
     }
 
     [Test]
     public void Should_Return_Expected_Result()
     {
-      var id = _fixture.Create<string>();
-      A.CallTo(() => _paymentRepository.SubmitPayment(A<PaymentDataEntity>.Ignored)).Returns(id);
-
       var result = _submitPaymentService.Submit(_account, _depositDetail);
 
-      result.Should().Be(id);
+      result.Should().BeOfType<string>();
     }
   }
 }

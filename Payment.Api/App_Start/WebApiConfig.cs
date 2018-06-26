@@ -12,6 +12,7 @@ namespace Payment.Api
     public static void Register(HttpConfiguration config)
     {
       config.Services.Add(typeof(IExceptionLogger), new GlobalExceptionLogger(new LoggerService()));
+      config.EnableCors();
       AutoMapperConfig.Configure();
 
       var traceWriter = config.EnableSystemDiagnosticsTracing();

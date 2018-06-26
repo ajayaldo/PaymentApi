@@ -2,6 +2,7 @@
 {
   public sealed class PaymentDataEntity
   {
+    public string Id { get; set; }
     public int Bsb { get; set; }
     public long AccountNumber { get; set; }
     public string AccountName { get; set; }

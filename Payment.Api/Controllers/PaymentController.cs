@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Web;
+using System.Web.Http;
+using System.Web.Http.Cors;
 using AutoMapper;
 using Payment.Api.DTOs;
 using Payment.Api.Filters;
@@ -7,6 +9,7 @@ using Payment.Common.ServiceInerfaces;
 
 namespace Payment.Api.Controllers
 {
+  [EnableCors("*", "*", "*")]
   public class PaymentController
     : ApiController
   {
@@ -21,7 +24,7 @@ namespace Payment.Api.Controllers
 
     [HttpPost]
     [ValidateDto]
-    [Route("submit")]
+    [Route("payment")]
     public IHttpActionResult Post([FromBody] PaymentDataDto paymentDataDto)
     {
       _loggerService.Log(LogLevel.Info, "Submit payment start.");
@@ -33,7 +36,7 @@ namespace Payment.Api.Controllers
 
       _loggerService.Log(LogLevel.Info, "Submit payment successful.");
 
-      return Created(transactionId, paymentDataDto);
+      return Created($"{Request.RequestUri}/{transactionId}", paymentDataDto);
     }
   }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using AutoFixture;
 using FakeItEasy;
-using FluentAssertions;
 using NUnit.Framework;
 using Payment.Common.Entities;
 using Payment.Common.ServiceInerfaces;
@@ -27,16 +26,9 @@ namespace Payment.Repository.Tests
     [Test]
     public void Should_Call_GetPaymentDataSubmitPath()
     {
-      _repository.SubmitPayment(_submitPaymentEntity);
+      _repository.Add(_submitPaymentEntity);
 
       A.CallTo(() => _fakeFilePathService.GetPaymentDataFilePath()).MustHaveHappened();
-    }
-
-    [Test]
-    public void Should_Call_Expected_ResultType()
-    {
-      var result = _repository.SubmitPayment(_submitPaymentEntity);
-      result.Should().BeOfType<string>();
     }
   }
 }

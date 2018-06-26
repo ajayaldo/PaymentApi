@@ -1,4 +1,5 @@
-﻿using Payment.Common.Entities;
+﻿using System;
+using Payment.Common.Entities;
 using Payment.Common.Models;
 using Payment.Common.ServiceInerfaces;
 using Payment.Common.RepositoryInterfaces;
@@ -17,8 +18,11 @@ namespace Payment.Service
 
     public string Submit(BankAccount account, DepositDetail depositDetail)
     {
+      var id = new Guid().ToString();
+
       var entity = new PaymentDataEntity
       {
+        Id = id,
         AccountName = account.AccountName,
         AccountNumber = account.AccountNumber,
         Bsb = account.Bsb,
@@ -26,7 +30,9 @@ namespace Payment.Service
         Reference = depositDetail.Reference
       };
 
-      return _paymentRepository.SubmitPayment(entity);
+      _paymentRepository.Add(entity);
+
+      return id;
     }
   }
 }
