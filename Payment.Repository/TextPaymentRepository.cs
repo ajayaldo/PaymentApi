@@ -2,7 +2,7 @@
 using System.Threading;
 using Payment.Common.Entities;
 using Payment.Common.RepositoryInterfaces;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 
 namespace Payment.Repository
 {

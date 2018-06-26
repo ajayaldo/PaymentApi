@@ -1,7 +1,7 @@
 ﻿using System;
 using Payment.Common.Entities;
 using Payment.Common.Models;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 using Payment.Common.RepositoryInterfaces;
 
 namespace Payment.Service

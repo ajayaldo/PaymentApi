@@ -1,4 +1,4 @@
-﻿namespace Payment.Common.ServiceInerfaces
+﻿namespace Payment.Common.ServiceInterfaces
 {
   public interface IFilePathService
   {

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Web.Http;
 using Payment.Common.Models;
 using Payment.Common.RepositoryInterfaces;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 using Payment.Repository;
 using Payment.Service;
 

@@ -1,6 +1,6 @@
 ﻿using Payment.Common.Models;
 
-namespace Payment.Common.ServiceInerfaces
+namespace Payment.Common.ServiceInterfaces
 {
   public interface ILoggerService
   {

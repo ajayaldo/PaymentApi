@@ -1,5 +1,5 @@
 ﻿using Payment.Common.Models;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 
 namespace Payment.Service
 {

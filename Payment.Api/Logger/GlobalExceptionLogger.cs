@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Web.Http.ExceptionHandling;
 using Payment.Common.Models;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 
 namespace Payment.Api.Logger
 {

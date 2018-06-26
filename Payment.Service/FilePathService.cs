@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.IO;
 using Payment.Common.Exception;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 
 namespace Payment.Service
 {

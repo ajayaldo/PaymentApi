@@ -48,9 +48,9 @@
     <Compile Include="Models\LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterfaces\IPaymentRepository.cs" />
-    <Compile Include="ServiceInerfaces\IFilePathService.cs" />
-    <Compile Include="ServiceInerfaces\ILoggerService.cs" />
-    <Compile Include="ServiceInerfaces\IPaymentService.cs" />
+    <Compile Include="ServiceInterfaces\IFilePathService.cs" />
+    <Compile Include="ServiceInterfaces\ILoggerService.cs" />
+    <Compile Include="ServiceInterfaces\IPaymentService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

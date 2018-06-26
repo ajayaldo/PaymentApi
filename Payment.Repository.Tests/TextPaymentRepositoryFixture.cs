@@ -3,7 +3,7 @@ using AutoFixture;
 using FakeItEasy;
 using NUnit.Framework;
 using Payment.Common.Entities;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 
 namespace Payment.Repository.Tests
 {

@@ -5,7 +5,7 @@ using AutoMapper;
 using Payment.Api.DTOs;
 using Payment.Api.Filters;
 using Payment.Common.Models;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 
 namespace Payment.Api.Controllers
 {

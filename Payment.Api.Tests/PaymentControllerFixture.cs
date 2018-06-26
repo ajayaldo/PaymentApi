@@ -11,7 +11,7 @@ using NUnit.Framework;
 using Payment.Api.Controllers;
 using Payment.Api.DTOs;
 using Payment.Common.Models;
-using Payment.Common.ServiceInerfaces;
+using Payment.Common.ServiceInterfaces;
 
 namespace Payment.Api.Tests
 {
