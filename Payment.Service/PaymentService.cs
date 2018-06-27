@@ -18,7 +18,7 @@ namespace Payment.Service
 
     public string Submit(BankAccount account, DepositDetail depositDetail)
     {
-      var id = new Guid().ToString();
+      var id = Guid.NewGuid().ToString();
 
       var entity = new PaymentDataEntity
       {
